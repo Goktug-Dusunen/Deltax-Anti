@@ -2,8 +2,8 @@ import os
 import hashlib
 import numpy as np
 import urllib.request
+import os
 from sklearn.svm import SVC
-
 def extract_features(file_path):
     with open(file_path, 'rb') as f:
         file_data = f.read()
@@ -32,6 +32,8 @@ def scan_directory(dir_path):
             features.append(feature_vector)
             label = get_label(file_path)
             labels.append(label)
+            os.system('clear')
+            os.system('figlet Deltax-Anti')
             print(f"Scanned {len(features)} files in {dir_path}")
     return np.array(features), np.array(labels)
 
@@ -43,5 +45,8 @@ def train_model(features, labels):
 features, labels = scan_directory('run/')
 if not np.any(labels == -1):
     train_model(features, labels)
+    for file in infected_files:
+        os.remove(file)
+        print(f"Removed {file} as it was infected. [x]")
 else:
-    print("No virus was found")
+    print("No virus was found [✓]")
