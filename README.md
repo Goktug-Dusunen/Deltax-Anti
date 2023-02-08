@@ -3,16 +3,13 @@ Hello, I am trying to make my own antivirus in this project, an anti virus based
 
 # ➤ :heavy_exclamation_mark: What does it do ?
 ```
-This code appears to be part of an antivirus application that is 
-used to recognize viruses by scanning files in a directory. 
-The feature vectors of the files are calculated based on the MD5
-hash value of each file and this hash value is compared to the virus 
-hash values in a database. If a file matches a virus, that file tag is set as virus.
-Feature vectors and tags of scanned files are used as training data,
-and a model is created using the Support Vector Classification (SVC) algorithm.
-If no match is found with one of the virus hash values in the database,
-the message "No virus was found [✓]" is displayed. The found infected 
-files are deleted and the message "Removed <file_path> as it was infected. [x]" is displayed.
+This code aims to scan all files in a directory to determine if they contain viruses.
+The code scans files and obtains their hashes using file hashes from the given databases.
+The resulting hashes are used as feature vectors of the files.
+A SVM (Support Vector Machine) model is then trained using these feature 
+vectors and tags that identify whether the files contain viruses
+(1 with virus, 0 without virus). The trained model is used to predict whether
+the files contain viruses. If a file contains a virus, it is deleted and a message is given to the user about this situation.
 
 This code is intended to detect viruses,
 but unfortunately may not provide a reliable solution for virus detection.
