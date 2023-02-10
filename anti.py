@@ -3,7 +3,8 @@ import hashlib
 import numpy as np
 import urllib.request
 from sklearn.svm import SVC
-
+import time
+os.system('bash loading.sh')
 def extract_features(file_path):
     with open(file_path, 'rb') as f:
         file_data = f.read()
@@ -34,7 +35,6 @@ def scan_directory(dir_path, databases):
             os.system('clear')
             os.system('figlet Deltax-Anti')
             print(f"Scanned {len(features)} files in {dir_path}")
-            os.system('sleep 0.1')
     return np.array(features), np.array(labels)
 
 def train_model(features, labels):
@@ -44,7 +44,7 @@ def train_model(features, labels):
 
 databases = [("https://virusshare.com/hashfiles/VirusShare_00000.md5", "VirusShare_00000.md5"),
              ("https://virusshare.com/hashfiles/VirusShare_00001.md5", "VirusShare_00001.md5"),
-             ("https://virusshare.com/hashfiles/VirusShare_00002.md5", "VirusShare_00002.md5"),        
+             ("https://virusshare.com/hashfiles/VirusShare_00002.md5", "VirusShare_00002.md5"),
             ]
 
 features, labels = scan_directory('run/', databases)
@@ -55,3 +55,5 @@ if not np.any(labels == -1):
         print(f"Removed {file} as it was infected. [x]")
 else:
     print("No virus was found [✓]")
+
+#power by Gdusunen
