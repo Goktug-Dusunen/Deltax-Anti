@@ -60,4 +60,7 @@ class AntiVirus(QtWidgets.QMainWindow):
                 self.results_display.setText("No virus was found.")
 
     def stop_scan(self):
-        self.results_display.clear()
+        try:
+            self.results_display.clear()
+        except Exception as e:
+            self.results_display.setText(f"An error occurred: {e}")
