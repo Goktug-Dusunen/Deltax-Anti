@@ -55,9 +55,9 @@ class AntiVirus(QtWidgets.QMainWindow):
                 self.train_model(self.features, self.labels)
                 for file in self.infected_files:
                     os.remove(file)
-                    self.results_display.append(f"Removed {file} as it was infected. [x]
+                    self.results_display.append(f"Removed {file} as it was infected.")
             else:
-                self.results_display.setText("No virus was found [✓]")
+                self.results_display.setText("No virus was found.")
 
-                def stop_scan(self):
-                    self.results_display.
+    def stop_scan(self):
+        self.results_display.clear()
