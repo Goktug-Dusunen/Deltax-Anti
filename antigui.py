@@ -41,6 +41,10 @@ class AntiVirus(QtWidgets.QMainWindow):
         self.select_directory_btn.move(100, 400)
         self.select_directory_btn.clicked.connect(self.select_directory)
 
+        self.update_db_btn = QtWidgets.QPushButton("Update Database", self)
+        self.update_db_btn.move(400, 400)
+        self.update_db_btn.clicked.connect(self.update_database)
+
         self.scan_results_label = QtWidgets.QLabel(self)
         self.scan_results_label.setText("Scan Results:")
         self.scan_results_label.move(50, 50)
@@ -49,7 +53,13 @@ class AntiVirus(QtWidgets.QMainWindow):
         self.results_display.setReadOnly(True)
         self.results_display.move(50, 80)
 
-
+    def update_database(self):
+        self.features = []
+        self.labels = []
+        self.results_display.setText("")
+        for url, file_name in self.databases:
+            urllib.request.urlretrieve(url, file_name)
+        self.results_display.append("Database updated successfully.")
 def start_scan(self):
     try:
         self.scan_status_label.setText("Scanning...")
