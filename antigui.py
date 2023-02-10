@@ -6,6 +6,7 @@ from sklearn.svm import SVC
 import time
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QMessageBox
 import sys
 
 class AntiVirus(QtWidgets.QMainWindow):
@@ -48,7 +49,10 @@ class AntiVirus(QtWidgets.QMainWindow):
         self.results_display.setReadOnly(True)
         self.results_display.move(50, 80)
 
-    def start_scan(self):
+
+def start_scan(self):
+    try:
+        self.scan_status_label.setText("Scanning...")
         if self.directory_path:
             self.scan_directory(self.directory_path)
             if not np.any(self.labels == -1):
@@ -56,11 +60,13 @@ class AntiVirus(QtWidgets.QMainWindow):
                 for file in self.infected_files:
                     os.remove(file)
                     self.results_display.append(f"Removed {file} as it was infected.")
+                self.scan_status_label.setText("Scan Completed")
+                QMessageBox.information(self, "Scan Results", "Scan Completed Successfully. No virus was found.")
             else:
                 self.results_display.setText("No virus was found.")
-
-    def stop_scan(self):
-        try:
-            self.results_display.clear()
-        except Exception as e:
-            self.results_display.setText(f"An error occurred: {e}")
+                self.scan_status_label.setText("Scan Completed")
+                QMessageBox.information(self, "Scan Results", "Scan Completed Successfully. No virus was found.")
+    except Exception as e:
+        # Handle the exception here
+        self.results_display.append(f"An error occurred during the scan: {e}")
+        self.scan_status_label.setText("Scan Failed")
