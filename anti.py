@@ -45,9 +45,23 @@ def train_model(features, labels):
 databases = [("https://virusshare.com/hashfiles/VirusShare_00000.md5", "VirusShare_00000.md5"),
              ("https://virusshare.com/hashfiles/VirusShare_00001.md5", "VirusShare_00001.md5"),
              ("https://virusshare.com/hashfiles/VirusShare_00002.md5", "VirusShare_00002.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00003.md5", "VirusShare_00003.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00004.md5", "VirusShare_00004.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00005.md5", "VirusShare_00005.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00006.md5", "VirusShare_00006.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00007.md5", "VirusShare_00007.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00008.md5", "VirusShare_00008.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00009.md5", "VirusShare_00009.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00010.md5", "VirusShare_00010.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00011.md5", "VirusShare_00011.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00012.md5", "VirusShare_00012.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00013.md5", "VirusShare_00013.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00014.md5", "VirusShare_00014.md5"),
+             ("https://virusshare.com/hashfiles/VirusShare_00015.md5", "VirusShare_00015.md5"),
+
             ]
 
-features, labels = scan_directory('run/', databases)
+features, labels = scan_directory('/run/media/gjdusunen/365E0A915E0A49D7/GrandRP Launcher/', databases)
 if not np.any(labels == -1):
     train_model(features, labels)
     for file in infected_files:
